@@ -21,20 +21,24 @@ function makeEmoteText() {
     var w = $("#gridWidth").val();
     var onEmote = $("#emoteOn").val();
     var offEmote = $("#emoteOff").val();
+    var chars = 0;
     for (var i = 0; i < Math.min(GRID_HEIGHT, h); i++) {
         for (var j = 0; j < Math.min(GRID_WIDTH, w); j++) {
             var isOn = $("#box" + i + "-" + j).prop("checked");
             console.log(i, j, isOn);
             if (isOn) {
                 out += onEmote;
+                chars += onEmote.length;
             } else {
                 out += offEmote;
+                chars += offEmote.length;
             }
         }
         out += "<br>";
     }
     $("#results").empty();
     $("#results").append(out);
+    $("#outputText").text("Output (" + chars + " chars):");
 }
 
 function autoResize() {
